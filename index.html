@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanGestão Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            background: #f6f8f6;
+            color: #1e293b;
+        }
+        #root {
+            min-height: 100vh;
+        }
+        .loading-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #f6f8f6;
+        }
+        .loading-content {
+            text-align: center;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #e2e8f0;
+            border-top: 4px solid #13ec5b;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loading-text {
+            color: #64748b;
+            font-size: 14px;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #dbe6df;
+            border-radius: 10px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+</head>
+<body>
+    <div id="root">
+        <div class="loading-screen">
+            <div class="loading-content">
+                <div class="spinner"></div>
+                <div class="loading-text">Carregando FinanGestão Pro...</div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="/index.tsx"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries" defer></script>
+    <script>
+        // Timeout de segurança para debug
+        setTimeout(function() {
+            var root = document.getElementById('root');
+            if (root && root.innerHTML.includes('loading-screen')) {
+                console.error('ERRO: A aplicação não carregou após 10 segundos');
+                root.innerHTML = '<div style="padding: 40px; text-align: center; font-family: sans-serif;"><h1 style="color: #ef4444; margin-bottom: 20px;">Erro ao carregar</h1><p>A aplicação não conseguiu inicializar. Verifique o console (F12) para mais detalhes.</p><button onclick="window.location.reload()" style="margin-top: 20px; padding: 10px 20px; background: #10b981; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">Recarregar</button></div>';
+            }
+        }, 10000);
+    </script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#13ec5b",
+                        "primary-dark": "#0fd652",
+                        danger: "#ec1313",
+                        "bg-light": "#f6f8f6",
+                        "bg-dark": "#102216",
+                    },
+                    fontFamily: {
+                        sans: ["Manrope", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+</body>
+</html>
